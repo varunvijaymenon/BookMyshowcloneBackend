@@ -122,5 +122,25 @@ app.get('/booking', async function (req, res) {
     res.send(result)
 })
 
+app.post('/booking', async function (req, res) {
+
+    movie_name = req.body.movie_name
+    silver = req.body.silver
+    date = req.body.date
+    day = req.body.day
+    time = req.body.time
+    cinemas_name = req.body.cinemas_name
+    silver = req.body.silver
+    platinium = req.body.platinium
+    price = req.body.price
+    total_price = req.body.total_price
+    banner_image_url = req.body.banner_image_url
+    movie_grade = req.body.movie_grade
+
+    res.status(201).json({
+        movie_name, silver, date, day, time, cinemas_name, silver, silver, platinium, price, total_price, banner_image_url, movie_grade
+      });
+})
+
 
 app.listen(PORT, () => console.log(`Server on ${PORT}`));
