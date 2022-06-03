@@ -79,21 +79,25 @@ app.get('/movies', async function (req, res) {
 })
 
 app.get('/movies/:id', async function (req, res) {
+    
+    let objid = ObjectId(req.params.id)
 
-    const result = await client.db('bookmyshow').collection('movies').findOne({_id: req.params.id});
+    const result = await client.db('bookmyshow').collection('movies').findOne({_id: objid});
     
 
     res.send(result)
 })
 
 app.patch('/movies/:id', async function (req, res) {
+    
+    let objid = ObjectId(req.params.id)
 
-    const result = await client.db('bookmyshow').collection('movies').findOneAndUpdate({_id: req.params.id}, {$set : {"rating.percentage" : req.body.rating.percentage, "rating.no_of_ratings": req.body.rating.no_of_ratings}}, { returnNewDocument: true })
+    const result = await client.db('bookmyshow').collection('movies').findOneAndUpdate({_id: objid}, {$set : {"rating.percentage" : req.body.rating.percentage, "rating.no_of_ratings": req.body.rating.no_of_ratings}}, { returnNewDocument: true })
 
     res.json(result)
 })
 
-app.post('/movies/:id', async function (req, res){
+app.post('/movies', async function (req, res){
 
     movie_name = req.body.movie_name
     cover_url = req.body.cover_url
